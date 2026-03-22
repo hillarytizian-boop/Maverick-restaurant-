@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAVERICKS | Experience Taste. Elevated.</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+body{background:#0a0a0a;color:white}
+#loader{position:fixed;inset:0;background:black;display:flex;align-items:center;justify-content:center;z-index:9999}
+.glass{background:rgba(18,18,18,.7);backdrop-filter:blur(10px)}
+.menu-item{transition:0.3s}
+</style>
+</head>
+
+<body>
+
+<!-- Loader -->
+<div id="loader">
+<h1 class="text-3xl text-yellow-500">MAVERICKS</h1>
+</div>
+
+<!-- NAV -->
+<nav class="fixed w-full glass z-50">
+<div class="flex justify-between p-5">
+<h1 class="font-bold">MAVERICKS</h1>
+
+<div class="hidden md:flex gap-6">
+<a href="#home">Home</a>
+<a href="#menu">Menu</a>
+<a href="#gallery">Gallery</a>
+<a href="#location">Location</a>
+<a href="#reservations" class="bg-yellow-500 text-black px-4 py-1">Book</a>
+</div>
+
+<button onclick="toggleMenu()" class="md:hidden"><i class="fas fa-bars"></i></button>
+</div>
+
+<div id="mobile-menu" class="hidden p-4">
+<a href="#home" class="block">Home</a>
+<a href="#menu" class="block">Menu</a>
+<a href="#reservations" class="block text-yellow-500">Book</a>
+</div>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="h-screen flex items-center justify-center text-center">
+<div>
+<h1 class="text-5xl mb-4 hero-anim">Experience Taste</h1>
+<p class="text-yellow-500 hero-anim">Elevated</p>
+<a href="#reservations" class="bg-yellow-500 text-black px-6 py-3 mt-6 inline-block hero-anim">Reserve</a>
+</div>
+</section>
+
+<!-- MENU -->
+<section id="menu" class="p-10">
+<h2 class="text-3xl text-center mb-10">Menu</h2>
+
+<div class="flex justify-center gap-6 mb-8">
+<button class="menu-tab text-yellow-500" onclick="switchTab('mains',event)">Mains</button>
+<button class="menu-tab" onclick="switchTab('drinks',event)">Drinks</button>
+<button class="menu-tab" onclick="switchTab('desserts',event)">Desserts</button>
+</div>
+
+<div class="grid md:grid-cols-2 gap-6">
+
+<div class="menu-item" data-category="mains">
+<h3>Gold Ribeye - KES 4500</h3>
+</div>
+
+<div class="menu-item hidden" data-category="drinks">
+<h3>Cocktail - KES 1200</h3>
+</div>
+
+<div class="menu-item hidden" data-category="desserts">
+<h3>Chocolate - KES 1500</h3>
+</div>
+
+</div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="p-10">
+<h2 class="text-3xl text-center mb-10">Gallery</h2>
+<div class="grid grid-cols-2 gap-4">
+<img src="https://picsum.photos/400/300">
+<img src="https://picsum.photos/401/300">
+</div>
+</section>
+
+<!-- LOCATION -->
+<section id="location" class="p-10">
+<h2 class="text-3xl mb-6">Location</h2>
+
+<div class="grid md:grid-cols-2 gap-10">
+
+<div>
+<h3>Gateway Mall</h3>
+<p>Syokimau, Nairobi</p>
+
+<h3 class="mt-6">Westlands</h3>
+<p>Nairobi</p>
+</div>
+
+<div>
+<iframe src="https://www.google.com/maps?q=Gateway+Mall+Nairobi&output=embed" class="w-full h-64"></iframe>
+</div>
+
+</div>
+</section>
+
+<!-- RESERVATION -->
+<section id="reservations" class="p-10 text-center">
+<h2 class="text-3xl mb-6">Reserve Table</h2>
+
+<a href="https://wa.me/254700000000?text=I%20want%20to%20book%20a%20table"
+class="bg-yellow-500 text-black px-8 py-3 inline-block">
+Book via WhatsApp
+</a>
+</section>
+
+<!-- JS -->
+<script>
+window.onload=()=>{loader.style.display="none"}
+
+function toggleMenu(){
+document.getElementById("mobile-menu").classList.toggle("hidden")
+}
+
+function switchTab(category,e){
+document.querySelectorAll(".menu-item").forEach(i=>{
+i.classList.add("hidden")
+if(i.dataset.category===category){i.classList.remove("hidden")}
+})
+document.querySelectorAll(".menu-tab").forEach(t=>t.classList.remove("text-yellow-500"))
+e.target.classList.add("text-yellow-500")
+}
+
+gsap.from(".hero-anim",{opacity:0,y:40,stagger:.2})
+</script>
+
+</body>
+</html>
